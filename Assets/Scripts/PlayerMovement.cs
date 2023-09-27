@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -15,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     public Bottle bottle;
     int ammoclip = 5;
 
+    float currenttime = 0;
+    float targetTime = 1f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        currenttime += Time.deltaTime;
+        if (currenttime > targetTime)
+        {
+            currenttime = 0;
+            ammoclip++;
+        }
 
         if (inmotion)
         {
